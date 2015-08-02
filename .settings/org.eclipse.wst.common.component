@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="SocialWEB">
+        <wb-resource deploy-path="/" source-path="/WebPages" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <property name="java-output-path" value="/SocialWEB/build/classes"/>
+        <property name="context-root" value="SocialWEB"/>
+    </wb-module>
+</project-modules>

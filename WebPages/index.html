@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>SocialWEB: Login Page</title>
+<script src="scripts/logValidate.js"></script></head>
+<body>
+	<h1>
+		<u>LOGIN</u>
+	</h1>
+	<form name="frm" action="log.jsp" method="post"
+		onsubmit="return login()">
+		<div id="err_msg"></div>
+		<table>
+			<tr>
+				<td>USERNAME :</td>
+				<td><input type="text" name="user">
+			</tr>
+			<tr>
+				<td>PASSWORD :</td>
+				<td><input type="password" name="pwd"><br> <i>
+				<font color="grey">Password should be at least 5 character long</font></i></td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="Login"></td>
+				<td><input type="reset" value="Clear"></td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>			
+			<tr>
+				<td></td>
+				<td><font color="blue">Not a User!! <a href="register.jsp">Register Here</a></font></td>
+			</tr>			
+		</table>
+	</form>
+</body>
+</html>
