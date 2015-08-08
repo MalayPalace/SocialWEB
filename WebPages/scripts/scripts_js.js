@@ -100,6 +100,7 @@ function register()
 //	Validating NAME
 	if(!((a1>='a') && (a1<='z'))  || ((a1>='A') && (a1<='Z')))
 	{
+		alert("Username should start with an alphabet");
 		return false;
 	}
 

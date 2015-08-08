@@ -1,4 +1,4 @@
-package com.main;
+package com.main.database;
 
 import java.io.InputStream;
 import java.sql.Connection;
@@ -27,7 +27,7 @@ public class DBConnection {
 		Properties prop=new Properties();
 
 		try{
-			in=DBConnection.class.getResourceAsStream("../config/database.properties");
+			in=DBConnection.class.getClassLoader().getResourceAsStream("com/config/database.properties");
 			prop.load(in);
 
 			//Retrieve value from database.properties file
