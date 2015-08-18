@@ -1,24 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="com.main.UserInfoHold" %>
+<%@page import="org.apache.logging.log4j.LogManager"%>
+<%@page import="org.apache.logging.log4j.Logger"%>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <%
-	UserInfoHold data=(UserInfoHold)session.getAttribute("CurUserDet");
-	String username = data.getUsername();
-	int noFriend = data.getNoFriends();
+Logger log=LogManager.getRootLogger();
+String username=null;
+int noFriend=0;
+UserInfoHold data=null;
+try{
+		data=(UserInfoHold)session.getAttribute("CurUserDet");
+		username = data.getUsername();
+		noFriend = data.getNoFriends();
+	}catch(NullPointerException err){
+		response.sendRedirect("index.html");
+	}catch(Exception err){
+		log.error("Error while getting Session Data: "+err);
+	}
 %>
-<body bgcolor="#D2D2D2">
-<font text-align="right">
-<table>
-<tr>
-<td>Welcome: <%=username %></td>
-<td><img src="images/logout.png" /></td>
-</tr>
-<tr>
-<td>Friends: <%=noFriend %></td>
-<td></td>
-</tr>
-</table>
-</font>
-</body>

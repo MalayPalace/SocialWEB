@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 
 /**
  * Servlet implementation class AddUser
@@ -23,6 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/AddUser")
 public class AddUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static Logger log=LogManager.getLogger(AddUser.class);
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -49,12 +53,14 @@ public class AddUser extends HttpServlet {
 				stmt=conn.createStatement();
 				stmt.executeUpdate("insert into USER_DETAILS(USER_NAME,USER_PASSWORD,EMAIL_ID,INS_DATE,NO_OF_FRIENDS) " +
 						"values('"+user+"','"+pass+"','"+email+"',CURRENT_TIMESTAMP(),0)");
+				log.info("User created successfully "+user);
 				out.print("<div class='block'>User Registered Successfully!!  ");
 				out.print("<a href='index.html'>Click Here</a> to go back to Login Page</div>");
 				req.getRequestDispatcher("/register.jsp").include(req, res);
 				conn.close();
 			}
 		}catch(Exception err){			
+			log.error("Error while creating User");
 			err.printStackTrace();
 			out.println("Connection Error. Please again later");
 			out.print("<a href='index.html'>Click Here</a> to go back to Login Page");

@@ -16,6 +16,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+
 /**
  * Landing Page after Users Logged on
  * 
@@ -24,6 +28,7 @@ import javax.servlet.http.HttpSession;
 @WebServlet(urlPatterns = { "/UserHome" })
 public class UserHome extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static Logger log=LogManager.getLogger(UserHome.class);
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
@@ -36,19 +41,22 @@ public class UserHome extends HttpServlet {
 		ResultSet rs;
 		String rPwd;
 		String rUser;
+		int rID;
 		int nFriends;
 		try{
 			conn=DBConnection.getConn();
 			if(conn!=null){
 				stmt=conn.createStatement();
-				rs=stmt.executeQuery("SELECT USER_NAME,USER_PASSWORD,NO_OF_FRIENDS FROM USER_DETAILS where USER_NAME='"+user+"'");
+				rs=stmt.executeQuery("SELECT USER_ID,USER_NAME,USER_PASSWORD,NO_OF_FRIENDS FROM USER_DETAILS where USER_NAME='"+user+"'");
 				if(rs.next()){
+					rID=rs.getInt("USER_ID");
 					rUser=rs.getString("USER_NAME");
 					rPwd=rs.getString("USER_PASSWORD");
 					nFriends=rs.getInt("NO_OF_FRIENDS");
 					if (rPwd.equals(pass)){
 						//Setting Values
 						UserInfoHold hs=new UserInfoHold();
+						hs.setUserID(rID);
 						hs.setUsername(rUser);
 						hs.setNoFriends(nFriends);
 						
@@ -67,6 +75,7 @@ public class UserHome extends HttpServlet {
 				conn.close();
 			}
 		}catch(Exception err){
+			log.error("Error while executing query");
 			err.printStackTrace();
 		}
 	}

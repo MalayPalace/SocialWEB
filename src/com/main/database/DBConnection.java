@@ -6,6 +6,9 @@ import java.sql.DriverManager;
 import java.sql.Statement;
 import java.util.Properties;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 /**
  * Class to get Connection by reading database.properties file
  * 
@@ -20,14 +23,14 @@ public class DBConnection {
 	static String dbpath=null;
 	static String username=null;
 	static String password=null;
-
+	private static Logger log=LogManager.getLogger(DBConnection.class);
 	
 	public void init(){
 		InputStream in=null;
 		Properties prop=new Properties();
 
 		try{
-			in=DBConnection.class.getClassLoader().getResourceAsStream("com/config/database.properties");
+			in=DBConnection.class.getClassLoader().getResourceAsStream("database.properties");
 			prop.load(in);
 
 			//Retrieve value from database.properties file
@@ -56,8 +59,8 @@ public class DBConnection {
 			con = DriverManager.getConnection(url,username,password);
 		}
 		catch(Exception e){
-			System.out.println("Exception :" + e);
-			e.printStackTrace();						
+			log.error("Cannot Connect to Database");
+			e.printStackTrace();
 		}
 		return con;
 	}
@@ -84,8 +87,8 @@ public class DBConnection {
 			}
 		}
 		catch(Exception e){
-			System.out.println("Exception :" + e);
-			e.printStackTrace();		
+			log.error("Cannot Connect to Database");
+			e.printStackTrace();
 		}
 	}
 }

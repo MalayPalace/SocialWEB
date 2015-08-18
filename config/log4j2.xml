@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+	<Appenders>
+		<File name="MyFile" fileName="E:/Eclipse_Workspaces/Workspace_git/SocialWEB/logs/app.log">
+			<PatternLayout pattern="%-5level {%d{dd/MMM/yyyy HH:mm:ss},%r} - %m [%c]%n" />
+		</File>
+		<Console name="Console">
+			<PatternLayout pattern="%-5level {%d{dd/MMM/yyyy HH:mm:ss},%r} - %m [%c]%n" />
+		</Console>
+	</Appenders>
+	<Loggers>
+		<Root level="trace">
+			<!-- <AppenderRef ref="Console" /> -->
+			<appender-ref ref="MyFile" />
+		</Root>
+	</Loggers>
+</Configuration>
