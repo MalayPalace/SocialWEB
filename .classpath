@@ -18,5 +18,6 @@
 	<classpathentry kind="lib" path="WebPages/WEB-INF/lib/log4j-1.2-api-2.3.jar"/>
 	<classpathentry kind="lib" path="WebPages/WEB-INF/lib/log4j-api-2.3.jar"/>
 	<classpathentry kind="lib" path="WebPages/WEB-INF/lib/log4j-core-2.3.jar"/>
+	<classpathentry kind="lib" path="WebPages/WEB-INF/lib/mybatis-3.3.0.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

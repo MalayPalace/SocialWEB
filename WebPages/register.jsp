@@ -17,7 +17,7 @@
 			<tr>
 				<td>EMAIL-ID :</td>
 				<td><input type="email" name="email" /></td>
-				<td><input type="hidden" name="valchk" value=""></td>
+				<td></td>
 			</tr>
 			<tr>
 				<td>USERNAME :</td>

@@ -37,11 +37,6 @@ function getAjaxResponse(){
 		if(my.status==200){
 			var res=my.responseText;
 			write.innerHTML=res;
-			if (res.contains("success.png")){
-				document.frm.valchk.value="true";
-			}else{
-				document.frm.valchk.value="false";
-			}
 		}
 	}
 }
@@ -51,7 +46,7 @@ function register()
 	var a=document.frm.username.value;
 	var b=document.frm.pwd.value;
 	var a1=a.charAt(0);
-	var chk=document.frm.valchk.value;
+	var usercheck=document.getElementById("userchk").innerHTML;
 	
 //	validation for name
 	if(a==null || a=="")       //Checking for empty
@@ -98,14 +93,14 @@ function register()
 	}
 
 //	Validating NAME
-	if(!((a1>='a') && (a1<='z'))  || ((a1>='A') && (a1<='Z')))
+	if(!((a1>='a' && a1<='z')  || (a1>='A' && a1<='Z')))
 	{
 		alert("Username should start with an alphabet");
 		return false;
 	}
 
 	//Validating Hidden Field
-	if (!(chk=="true")){
+	if (!(usercheck.contains("success.png"))){
 		alert("User name is already taken");
 		return false;
 	}

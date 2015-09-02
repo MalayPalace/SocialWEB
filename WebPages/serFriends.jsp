@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>SocialWEB: UserPage</title>
+<title>SocialWEB: Search Friends</title>
 <link rel="stylesheet" type="text/css" href="scripts/menustyle.css" />
 </head>
 <body>
@@ -15,10 +15,10 @@
  <nav>
    <div id="menubar">
         <ul id="nav">
-			<li class="current"><a href="#">Home</a></li>
+			<li><a href="userIndex.jsp">Home</a></li>
 			<li><a href="friends.jsp">Friends</a></li>
-			<li><a href="serFriends.jsp">Search New Friends</a></li>
-			<li><a href="profile.jsp">Profile</a></li>
+			<li class="current"><a href="#">Search Friends</a></li>
+			<li><a href="noti.jsp">Notification</a></li>
         </ul>
   <ul id="disp">
 	<li>Welcome, <%=username %>&nbsp;&nbsp;&nbsp;</li>
@@ -27,8 +27,20 @@
       </div><!--close menubar-->	
     </nav>
 </header>
+<br><br>
 
 <!--Main Page  -->
+<form>
+	<input type="text" size="40%" placeholder="Enter first few characters to search" />&nbsp;&nbsp;Search by :&nbsp;&nbsp;
+	<select name="searchType">
+		<option value="Username" selected>Username</option>
+		<option value="Email">Email</option>		
+	</select>
+<br>
 
+<!-- Div Tag to display process data -->
+<div id="mainData"></div>
+
+</form>
 </body>
 </html>
