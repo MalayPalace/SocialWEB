@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+<mapper namespace="com.main.mybatis.dao.FriendsDetailsDAO">
+
+	<insert id='insertRelation' parameterType='FriendsDetails' useGeneratedKeys='true' keyProperty='tableId'>
+		INSERT INTO FRIENDS_DETAILS(USER_ID, FRIENDS_ID, INS_DATE
+		<if test="pendingFlag!=null">
+			, PENDING_FLAG
+		</if>
+		<if test="isBlock!=null">
+			, IS_BLOCK
+		</if>
+		) 
+		VALUES(#{userId_fk}, #{friendsId}, CURRENT_TIMESTAMP() 
+		<if test="pendingFlag!=null">
+			, #{pendingFlag}
+		</if>
+		<if test="isBlock!=null">
+			, #{isBlock}
+		</if>
+		)
+	</insert>
+
+	<select id='getFriendRequestSend' parameterType='int' resultType='Integer'>
+		Select 
+		FRIENDS_ID 
+		FROM FRIENDS_DETAILS 
+		WHERE USER_ID=#{userId} and PENDING_FLAG=0;
+	</select>
+
+	<select id='getFriendRequestByFriendsID' parameterType='int' resultType='UserDetails'>
+		SELECT 
+		UD.USER_ID AS userId, UD.USER_NAME AS userName, UD.EMAIL_ID AS emailId
+		FROM FRIENDS_DETAILS FD, USER_DETAILS UD
+		WHERE FD.USER_ID=UD.USER_ID AND FD.PENDING_FLAG=0 AND 
+		FD.FRIENDS_ID=#{friendsId}
+	</select>
+
+	<select id='getFriendsList' parameterType='int' resultType='UserDetails'>
+		Select 
+		UD.USER_ID AS userId, UD.USER_NAME AS userName, UD.EMAIL_ID AS emailId 
+		FROM FRIENDS_DETAILS FD, USER_DETAILS UD
+		WHERE UD.USER_ID=FD.USER_ID AND FD.PENDING_FLAG=1 AND 
+		FD.USER_ID=#{userId}
+	</select>
+
+</mapper>

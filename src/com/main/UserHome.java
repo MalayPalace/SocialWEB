@@ -63,6 +63,7 @@ public class UserHome extends HttpServlet {
 						//Setting Values in a Session
 						HttpSession sess=request.getSession();
 						sess.setAttribute("CurUserDet",hs);
+						log.info("Session created for User "+rUser);
 						response.sendRedirect("userIndex.jsp");
 					}else{
 						request.getRequestDispatcher("/index.html").include(request, response);					
@@ -75,8 +76,8 @@ public class UserHome extends HttpServlet {
 				conn.close();
 			}
 		}catch(Exception err){
-			log.error("Error while executing query");
-			err.printStackTrace();
+			log.error("Error while executing query : "+err.getMessage());
+			response.sendError(404);
 		}
 	}
 }

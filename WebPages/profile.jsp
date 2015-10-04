@@ -1,9 +1,8 @@
-<%@page import="com.main.mybatis.service.UserDetailsDAOImpl"%>
-<%@page import="com.main.mybatis.dao.UserDetails"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@ page import="com.main.UserInfoHold"%>
 <%@ include file="userjsp/header.jsp" %>
+<%@ page import="com.main.mybatis.service.UserDetailsDAOImpl"%>
+<%@ page import="com.main.mybatis.dao.UserDetails"%>
 
 <!DOCTYPE html>
 <html>
@@ -13,7 +12,7 @@
 <link rel="stylesheet" type="text/css" href="scripts/menustyle.css" />
 <script src="scripts/scripts_js.js"></script>
 </head>
-<body>
+<body onload="getStr()">
 <header>
  <nav>
    <div id="menubar">
@@ -33,33 +32,39 @@
 
 <!--Main Page  -->
 <br>
+<div id="message-placeholder">
+</div>
+<br>
 
 <!--Get Information for currently logged User-->
 <%
 	int id;
-	UserDetails currValue=new UserDetails();
-	UserDetailsDAOImpl usrDao=new UserDetailsDAOImpl();
-		
-	id=data.getUserID();
-	currValue=usrDao.getUserByuserId(id);
-	if(currValue==null){
-		log.error("Error while fetching value from USER_DETAILS Table");
-	}
+	UserDetails currValue = new UserDetails();
+	UserDetailsDAOImpl usrDao = new UserDetailsDAOImpl();
+
+	if (!(data == null)) {
+		id = data.getUserID();
+		currValue = usrDao.getUserByuserId(id);
+		if (currValue == null) {
+			log.error("Error while fetching value from USER_DETAILS Table");
+		}
 %>
 
 <div id="site_content">
 <br><br>
-<form name="frm" method="post" action="UpdateUser" onsubmit="return register()">
+<form name="frm" method="post" action="UpdateUser" onsubmit="return profileCheck()">
 	<table>
 		<tr>
 			<td>EMAIL-ID :</td>
 			<td><input type="email" name="email" size="40%" value="<%=currValue.getEmailId() %>" /></td>
 			<td></td>
+			<td><input type="hidden" name="hid_email"value="<%=currValue.getEmailId() %>" /></td>
 		</tr>
 		<tr>
 			<td>USERNAME :</td>
 			<td><input type="text" name="username" size="40%" value="<%=currValue.getUserName() %>" onchange="getUser(this.value)"/></td>
 			<td><div id="userchk"></div></td>
+			<td><input type="hidden" name="hid_username"value="<%=currValue.getUserName() %>" /></td>
 		</tr>
 		<tr>
 			<td></td>
@@ -70,6 +75,7 @@
 			<td>PASSWORD :</td>
 			<td><input type="text" name="pwd" size="40%" value="<%=currValue.getUserPassword() %>" /></td>
 			<td></td>
+			<td><input type="hidden" name="hid_pwd" value="<%=currValue.getUserPassword() %>" /></td>
 		</tr>
 		<tr>
 			<td>&nbsp;</td>
@@ -77,9 +83,10 @@
 			<td>&nbsp;</td>
 		</tr>
 		<tr>
+			<td><input type="hidden" name="UsrID" value="<%=id %>" /></td>
+			<td><input type="hidden" name="nFriends" value="<%=currValue.getNoFriends() %>" /></td>
 			<td><input type="submit" value="UPDATE"></td>
 			<td><input type="reset" value="CLEAR"></td>
-			<td></td>
 		</tr>
 	</table>
 </form>
@@ -87,3 +94,6 @@
 </div>
 </body>
 </html>
+<%
+	}
+%>

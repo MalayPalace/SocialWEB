@@ -3,11 +3,20 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Sample Page</title>
+<script type="text/javascript">
+function myFunc(){
+	document.getElementById("myclass").innerHTML="<p>Element changed from JS</p>";
+	alert(document.getElementById("myclass").innerHTML);
+}
+</script>
 </head>
-<body>
+<body onload="myFunc()">
 <form name="myfrm" method="get" action="SearchUser">
 <input type="text" name="userName" size="30" placeholder="Type anything to Search" />
 <input type="Submit" value="Send">
+<div id="myclass">
+<p>This is div section with ID myclass</p>
+</div>
 </form>
 </body>
 </html>

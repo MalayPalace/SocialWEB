@@ -35,4 +35,12 @@ public interface UserDetailsDAO {
 	 * @return
 	 */
 	public UserDetails getUserByuserId(int userId);
+
+	/**
+	 * Update the UserDetails Table by userID
+	 * 
+	 * @param userid
+	 * @return
+	 */
+	public int updateUser(UserDetails user);
 }

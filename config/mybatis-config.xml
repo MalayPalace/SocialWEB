@@ -7,6 +7,8 @@ PUBLIC '-//mybatis.org//DTD Config 3.0//EN'
 	<typeAliases>
 		<typeAlias type='com.main.mybatis.dao.UserDetails'
 			alias='UserDetails'></typeAlias>
+		<typeAlias type='com.main.mybatis.dao.FriendsDetails'
+			alias='FriendsDetails'></typeAlias>
 	</typeAliases>
 	<environments default='development'>
 		<environment id='development'>
@@ -21,5 +23,6 @@ PUBLIC '-//mybatis.org//DTD Config 3.0//EN'
 	</environments>
 	<mappers>
 		<mapper resource='com/main/mybatis/dao/UserDetails_SqlMapper.xml' />
+		<mapper resource='com/main/mybatis/dao/FriendsDetails_SqlMapper.xml' />
 	</mappers>
 </configuration>

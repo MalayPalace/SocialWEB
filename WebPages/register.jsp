@@ -12,7 +12,7 @@
 	<h1>
 		<u>MEMBERSHIP FORM</u>
 	</h1>
-	<form name="frm" method="post" action="AddUser" onsubmit="return register()">
+	<form name="frm" method="post" action="AddUser" onsubmit="return registerCheck()">
 		<table>
 			<tr>
 				<td>EMAIL-ID :</td>

@@ -48,4 +48,18 @@ public class UserDetailsDAOImpl implements UserDetailsDAO{
 			sqlSession.close();
 		}
 	}
+
+	@Override
+	public int updateUser(UserDetails user){
+		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+		int rows=0;
+		try{
+			UserDetailsDAO userMapper = sqlSession.getMapper(UserDetailsDAO.class);
+			rows=userMapper.updateUser(user);
+			sqlSession.commit();
+			return rows;
+		}finally{
+			sqlSession.close();
+		}
+	}
 }

@@ -46,7 +46,7 @@ public class DBConnection {
 		}
 	}
 	
-	public static Connection getConn(){
+	public static Connection getConn() throws Exception{
 		DBConnection db=new DBConnection();
 		db.init();
 
@@ -59,8 +59,8 @@ public class DBConnection {
 			con = DriverManager.getConnection(url,username,password);
 		}
 		catch(Exception e){
-			log.error("Cannot Connect to Database");
-			e.printStackTrace();
+			log.error("Cannot Connect to Database: "+e.getMessage());
+			throw e;
 		}
 		return con;
 	}

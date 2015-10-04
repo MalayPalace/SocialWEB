@@ -16,7 +16,8 @@ try{
 		noFriend = data.getNoFriends();
 	}catch(NullPointerException err){
 		response.sendRedirect("index.html");
+		//response.setHeader("Location", "index.html");
 	}catch(Exception err){
-		log.error("Error while getting Session Data: "+err);
+		log.error("Error while getting Session Data: "+err.getMessage());
 	}
 %>

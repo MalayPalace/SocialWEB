@@ -69,15 +69,64 @@ ul#disp li
   color: #FFF;
   text-decoration: none;} 
   
-#site_content
-{ width: auto;
+#site_content{
+  width: auto;
   margin: 0 100px 0 100px;
   overflow: hidden;
   margin-bottom: 10px;
   -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 5px;
   -moz-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 5px;
-  box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 5px;}
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 5px;
+}
 
 #copy
 {
 	text-align: center;}
+
+#message-holder {
+	display:block;
+	margin: 0 100px 0 100px;
+	width: auto;
+    background: #E6F7B0 none repeat scroll 0% 0%;
+    border: 1px solid #FAEBCC;
+	color: #8A6D3B;
+	padding: 10px;
+	position: relative;
+    z-index: 1;
+}
+
+/* Added For friends.jsp */
+td, table, tr {
+    font-size-adjust: none;
+    font-style: normal;
+    font-weight: normal;
+    line-height: normal;
+    color: #000;
+}
+div.table-content{
+	padding: 10px 10px 10px 45px;
+	line-height: 100%;
+}
+div.navigation{
+	text-align: left;
+	clear: left;
+    background: #FFF url("../images/right-box-left.png") repeat-y scroll left 0pt;
+    width: 350px;
+}
+div.navigation_top{
+    background: transparent url("../images/right-box-top.png") no-repeat scroll left top;
+    padding: 5px 2px 2px 5px;
+    width: 300px;
+}
+div.navigation_bottom{
+	padding: 5px 11px 17px 5px;
+	background: transparent url("../images/right-box-bottom.png") no-repeat scroll left bottom;
+}
+
+div.navigation_bottom ol, 
+div.navigation_bottom ul, 
+div.navigation_bottom {
+  line-height: 13px;
+  text-align: left;
+  padding-left: 11px;
+}

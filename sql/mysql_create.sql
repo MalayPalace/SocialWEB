@@ -18,6 +18,28 @@ USE `socialweb`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `FRIENDS_DETAILS`
+--
+
+DROP TABLE IF EXISTS `FRIENDS_DETAILS`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `FRIENDS_DETAILS` (
+  `TABLE_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `USER_ID` int(11) NOT NULL,
+  `FRIENDS_ID` int(11) NOT NULL,
+  `PENDING_FLAG` int(1) DEFAULT '0',
+  `INS_DATE` timestamp NULL DEFAULT NULL,
+  `IS_BLOCK` int(1) DEFAULT '0' COMMENT '0=Not blocked\n1=Blocked',
+  PRIMARY KEY (`TABLE_ID`),
+  KEY `friends_details_ibfk_1` (`USER_ID`),
+  KEY `friends_details_ibfk_2` (`FRIENDS_ID`),
+  CONSTRAINT `friends_details_ibfk_1` FOREIGN KEY (`USER_ID`) REFERENCES `USER_DETAILS` (`USER_ID`),
+  CONSTRAINT `friends_details_ibfk_2` FOREIGN KEY (`FRIENDS_ID`) REFERENCES `USER_DETAILS` (`USER_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `USER_DETAILS`
 --
 
@@ -33,8 +55,9 @@ CREATE TABLE `USER_DETAILS` (
   `NO_OF_FRIENDS` int(5) DEFAULT NULL,
   PRIMARY KEY (`USER_ID`),
   UNIQUE KEY `USER_NAME_UNIQUE` (`USER_NAME`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1 COMMENT='Holds User Information';
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1 COMMENT='Holds User Information';
 /*!40101 SET character_set_client = @saved_cs_client */;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
@@ -44,4 +67,4 @@ CREATE TABLE `USER_DETAILS` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-08-04  1:12:56
+-- Dump completed on 2015-09-12 20:38:50

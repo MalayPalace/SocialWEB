@@ -46,7 +46,6 @@ function register()
 	var a=document.frm.username.value;
 	var b=document.frm.pwd.value;
 	var a1=a.charAt(0);
-	var usercheck=document.getElementById("userchk").innerHTML;
 	
 //	validation for name
 	if(a==null || a=="")       //Checking for empty
@@ -98,11 +97,78 @@ function register()
 		alert("Username should start with an alphabet");
 		return false;
 	}
+	return true;
+}
 
-	//Validating Hidden Field
-	if (!(usercheck.contains("success.png"))){
-		alert("User name is already taken");
+function registerCheck(){
+	var retCheck=register();
+	var usercheck=document.getElementById("userchk").innerHTML;
+	if(retCheck){
+		//Validating Return Username Field
+		if (!(usercheck.contains("success.png"))){
+			alert("User name is already taken");
+			return false;
+		}
+		return true;
+	}else{
 		return false;
 	}
-	return true;
+}
+
+function profileCheck(){
+	var retCheck=register();
+	var usercheck=document.getElementById("userchk").innerHTML;
+	if(retCheck){
+		var errorMsg=document.getElementById("message-placeholder");
+		var email=document.frm.email.value;
+		var hid_email=document.frm.hid_email.value;
+		var username=document.frm.username.value;
+		var hid_username=document.frm.hid_username.value;
+		var pwd=document.frm.pwd.value;
+		var hid_pwd=document.frm.hid_pwd.value;
+		if(email==hid_email && username==hid_username && pwd==hid_pwd){
+			errorMsg.innerHTML="<div id='message-holder'>No Change to Update anything</div>";
+			return false;
+		}
+		
+		if ((usercheck.contains("error.png"))){
+			errorMsg.innerHTML="<div id='message-holder'>User name is already taken</div>";
+			return false;
+		}
+		return true;
+	}else{
+		return false;
+	}
+}
+
+function getStr(){
+	var text=getURLString("filter");
+	if(!(text=="null") && text==-1){
+		var str=document.getElementById("message-placeholder");
+		str.innerHTML="<div id='message-holder'>User Details Updated Successfully!!</div>";
+	}
+	if(!(text=="null") && text==-2){
+		var str=document.getElementById("message-placeholder");
+		str.innerHTML="<div id='message-holder'>Some Error occured while Updating User Details</div>";
+	}
+}
+
+function getURLString(fieldname){
+	var queryStr="null";
+	var query = window.location.href.split("?");
+	if(typeof query[1]==="undefined"){
+		return "null";
+	}
+	var vars = query[1].split("&");
+	for (var i=0;i<vars.length;i++) {
+		var pair = vars[i].split("=");
+		if(pair[0]===fieldname){
+			queryStr=pair[1];
+		}
+	}
+	if(queryStr=="null"){
+		return "null";
+	}else{
+		return queryStr;
+	}
 }

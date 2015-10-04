@@ -29,6 +29,8 @@
 </header>
 
 <!--Main Page  -->
-
+<%
+	String as=null;
+%>
 </body>
 </html>

@@ -8,8 +8,8 @@ PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
 		SELECT 
 		USER_ID as userId, USER_NAME as userName
 		FROM USER_DETAILS
-		WHERE USER_ID!=#{userId} AND USER_ID NOT IN (SELECT FRIENDS_ID FROM FRIENDS_DETAILS WHERE USER_ID=#{userId}) 
-		AND USER_NAME LIKE '%'||#{userName}||'%'
+		WHERE USER_ID!=#{userId} AND USER_ID NOT IN (SELECT FRIENDS_ID FROM FRIENDS_DETAILS WHERE USER_ID=#{userId} AND PENDING_FLAG=1) 
+		AND USER_NAME LIKE #{userName}
 	</select>
 
 	<select id='getUsernameNotFriendByEmailid' parameterType='UserDetails' resultType='UserDetails'>
@@ -32,5 +32,15 @@ PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
 		SELECT * FROM USER_DETAILS
 		WHERE USER_ID=#{userId}
 	</select>
+
+	<update id='updateUser' parameterType='UserDetails'>
+		UPDATE USER_DETAILS
+		SET
+		USER_NAME = #{userName},
+		EMAIL_ID = #{emailId},
+		USER_PASSWORD = #{userPassword}
+		WHERE 
+		USER_ID = #{userId}
+	</update>
 	
 </mapper>
